@@ -9,8 +9,16 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    pro : {
+        type : Boolean,
+        default : false
+    },
     otp: {
         type: String,
+    },
+    limit : {
+        type : Number,
+        default : 0,
     },
     isVerified: {
         type: Boolean,

@@ -36,7 +36,7 @@ const register = async (req, res) => {
     });
 
     await newUser.save();
-    const status = sendMail({to : newUser.email, subject : "OTP verification", text : `Your OTP ${newUser.otp}`});
+    const status = sendMail({to : newUser.email, subject : "OTP verification", otp : newUser.otp});
 
     // 6. TODO: Send OTP via email or SMS (e.g., using nodemailer or Twilio)
 
@@ -106,6 +106,7 @@ const login = async (req, res) => {
 const verifyOtp = async (req, res) => {
   try {
     const { email, otp } = req.body;
+
 
     if (!email || !otp) {
       return res.status(400).json({ message: "Email and OTP are required" });
