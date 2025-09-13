@@ -8,6 +8,7 @@ const BriefRouter = require("./routes/BriefRoute");
 const ContactRouter = require("./routes/ContactRoute");
 const PaymentRouter = require("./routes/PaymentRoute");
 const connectDB = require("./config/db");
+const cors = require('cors');
 const userMiddleware = require("./middleware/userMiddleware");
 
 // Load env variables
@@ -16,7 +17,7 @@ dotenv.config();
 
 // Initialize app
 const app = express();
-
+app.use(cors({origin : ["http://localhost:5173", "https://briefme.vercel.app"]}));
 // Middleware
 app.use(express.json()); // Parse JSON bodies
 app.use(cors());         // Enable CORS
