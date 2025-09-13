@@ -17,10 +17,8 @@ const headers = {
 
 const getProducts = async (req, res) => {
     try {
-        console.log("route hit");
         const response = await axios.get(`${lsqyConfig.URL}/products`, {
             headers: headers,
-            timeout: 10000
         })
         const price = response.data.data[0].attributes.price_formatted;
         const buy_now_url = response.data.data[0].attributes.buy_now_url;
