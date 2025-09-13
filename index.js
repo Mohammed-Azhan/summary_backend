@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const UserRouter = require("./routes/userRoute");
 const BriefRouter = require("./routes/BriefRoute");
 const ContactRouter = require("./routes/ContactRoute");
+const PaymentRouter = require("./routes/PaymentRoute");
 const connectDB = require("./config/db");
 const userMiddleware = require("./middleware/userMiddleware");
 
@@ -25,6 +26,7 @@ app.use("/api/users", UserRouter);
 app.use('/user/verify', userMiddleware);
 app.use("/api/process", BriefRouter);
 app.use("/api/contactus", ContactRouter);
+app.use("/api/payment", PaymentRouter);
 
 
 
