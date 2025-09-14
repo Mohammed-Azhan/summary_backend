@@ -34,6 +34,21 @@ app.get("/", async (req, res) => {
   res.send("API is running...");
 });
 
+app.post("/webhook", async (req, res) => {
+  try {
+    const payload = req.body;
+    console.log("Webhook received:", payload);
+
+    // ✅ Do something with payload
+    // Example: store subscription status in DB
+
+    res.status(200).send("OK");
+  } catch (error) {
+    console.error("Webhook Error:", error);
+    res.status(400).send("Webhook handler failed");
+  }
+});
+
 // Connect to database
 connectDB();
 
