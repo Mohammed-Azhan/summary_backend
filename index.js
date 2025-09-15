@@ -9,6 +9,7 @@ const ContactRouter = require("./routes/ContactRoute");
 const PaymentRouter = require("./routes/PaymentRoute");
 const connectDB = require("./config/db");
 const userMiddleware = require("./middleware/userMiddleware");
+const UserModel = require('./models/User');
 
 // Load env variables
 dotenv.config();
@@ -37,8 +38,10 @@ app.get("/", async (req, res) => {
 app.post("/webhook", async (req, res) => {
   try {
     const payload = req.body;
-    console.log("Webhook received:", payload);
-
+    const user_id = payload.meta.custom_data.user_id;
+    const updateUser = await User.updateOne({_id : user_id}, {$set : {pro : true}});
+    updateUser.save();
+    res.status(200).send("Ok");
     // ✅ Do something with payload
     // Example: store subscription status in DB
 
