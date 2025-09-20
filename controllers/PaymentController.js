@@ -37,15 +37,17 @@ const getProducts = async (req, res) => {
 const getVariants = async (req, res) => {
     try {
         const response = await axios.get(`${lsqyConfig.URL}/variants`, {
+            timeout: 5000,
             headers: headers,
         })
+
 
         const { id } = response.data.data[0];
         res.status(200).json({ type: "Variants", id, status: true });
     }
     catch (error) {
         console.log(error);
-        res.json({ type: "Variants", status: false, });
+        res.json({ type: "Variants fetch failed", status: false, });
     }
 }
 

@@ -39,13 +39,11 @@ app.post("/webhook", async (req, res) => {
   try {
     const payload = req.body;
     const user_id = payload.meta.custom_data.user_id;
-    const updateUser = await User.updateOne({_id : user_id}, {$set : {pro : true}});
-    updateUser.save();
+    console.log("Webhook received for user ID:", user_id);
+    const updateUser = await UserModel.updateOne({_id : user_id}, {$set : {pro : true}});
     res.status(200).send("Ok");
-    // ✅ Do something with payload
-    // Example: store subscription status in DB
+  
 
-    res.status(200).send("OK");
   } catch (error) {
     console.error("Webhook Error:", error);
     res.status(400).send("Webhook handler failed");
