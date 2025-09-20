@@ -150,6 +150,7 @@ const getUserProfile = async (req, res) => {
   res.status(200).json({
     id: req.user._id,
     email: req.user.email,
+    pro : req.user.pro,
     name: req.user.name, // include other safe fields
   });
 };
